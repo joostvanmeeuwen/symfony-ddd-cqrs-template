@@ -1,0 +1,40 @@
+###> symfony/framework-bundle ###
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+### Docker ###
+/docker/data/
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+### IDE ###
+/.idea/
+/.vscode/
+*.sublime-workspace
+*.sublime-project
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+###< symfony/asset-mapper ###
+
+### Environment ###
+/.env
+!/.env.example
+!/.env.test
+
+### Other ###
+/node_modules/
+npm-debug.log
+yarn-error.log
