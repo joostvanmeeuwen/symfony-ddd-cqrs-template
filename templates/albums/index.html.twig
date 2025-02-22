@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Albums{% endblock %}
+
+{% block body %}
+    <h1>Albums</h1>
+
+    {% if albums is empty %}
+        <p>No albums found.</p>
+    {% else %}
+        <div class="albums">
+            {% for album in albums %}
+                <div class="album">
+                    <h2>{{ album.title }}</h2>
+                    <p>Artist: {{ album.artist }}</p>
+                    <p>Released: {{ album.releaseDate|date('Y-m-d') }}</p>
+                    {% if album.description %}
+                        <p>{{ album.description }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if pagination.total > pagination.itemsPerPage %}
+            <div class="pagination">
+                {% set totalPages = (pagination.total / pagination.itemsPerPage)|round(0, 'ceil') %}
+                {% for i in 1..totalPages %}
+                    <a href="?page={{ i - 1 }}">{{ i }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

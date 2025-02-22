@@ -1,10 +1,20 @@
+# API Documentation
 app.swagger_ui:
     path: /api/docs
     methods: GET
     defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
 
-controllers:
+# REST API routes
+api_routes:
     resource:
         path: ../src/UserInterface/Http/Rest/Controller/
         namespace: App\UserInterface\Http\Rest\Controller
+    type: attribute
+    prefix: /api/v1
+
+# Web routes
+web_routes:
+    resource:
+        path: ../src/UserInterface/Http/Web/Controller/
+        namespace: App\UserInterface\Http\Web\Controller
     type: attribute
