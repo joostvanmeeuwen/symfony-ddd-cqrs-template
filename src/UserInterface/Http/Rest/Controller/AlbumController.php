@@ -1,12 +1,12 @@
 <?php
 
-namespace App\UserInterface\Controller;
+namespace App\UserInterface\Http\Rest\Controller;
 
 use App\Application\Command\CreateAlbum;
 use App\Application\Query\DTO\PaginatedResult;
 use App\Application\Query\SearchAlbums;
-use App\UserInterface\DTO\CreateAlbumRequest;
-use App\UserInterface\DTO\SearchAlbumsRequest;
+use App\UserInterface\Http\Rest\DTO\CreateAlbumRequest;
+use App\UserInterface\Http\Rest\DTO\SearchAlbumsRequest;
 use DateTimeImmutable;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
@@ -14,9 +14,10 @@ use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\HttpKernel\Attribute\MapQueryString;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[OA\Tag(name: 'Albums')]
@@ -90,7 +91,7 @@ class AlbumController extends AbstractController
         name: 'itemsPerPage',
         description: 'Number of items per page',
         in: 'query',
-        schema: new OA\Schema(type: 'integer', minimum: 1, maximum: 100)
+        schema: new OA\Schema(type: 'integer', maximum: 100, minimum: 1)
     )]
     #[OA\Parameter(
         name: 'page',
@@ -109,8 +110,12 @@ class AlbumController extends AbstractController
             page: $request->page
         );
 
-        $result = $this->queryBus->dispatch($query);
+        /** @var PaginatedResult $paginatedResult */
+        $paginatedResult = $this->queryBus
+            ->dispatch($query)
+            ->last(HandledStamp::class)
+            ->getResult();
 
-        return new JsonResponse($result);
+        return new JsonResponse($paginatedResult);
     }
 }

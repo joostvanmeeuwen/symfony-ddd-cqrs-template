@@ -5,6 +5,6 @@ app.swagger_ui:
 
 controllers:
     resource:
-        path: ../src/UserInterface/Controller/
-        namespace: App\UserInterface\Controller
+        path: ../src/UserInterface/Http/Rest/Controller/
+        namespace: App\UserInterface\Http\Rest\Controller
     type: attribute

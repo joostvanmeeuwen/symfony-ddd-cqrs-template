@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserInterface\DTO;
+namespace App\UserInterface\Http\Rest\DTO;
 
 use OpenApi\Attributes as OA;
 use Symfony\Component\Serializer\Annotation\SerializedName;
