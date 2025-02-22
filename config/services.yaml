@@ -20,7 +20,7 @@ services:
             - '../src/Domain/Event/'
             - '../src/Application/Command/DTO/'
             - '../src/Application/Query/DTO/'
-            - '../src/Infrastructure/Persistence/Doctrine/'
+            - '../src/Infrastructure/Persistence/Doctrine/Migrations/'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
