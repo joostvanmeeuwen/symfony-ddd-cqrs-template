@@ -29,7 +29,7 @@ readonly class GetAlbumByIdHandler
             $album->getTitle(),
             $album->getArtist(),
             $album->getReleaseDate(),
-            $album->getDescription()
+            $album->description
         );
     }
 }

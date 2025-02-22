@@ -5,12 +5,12 @@ namespace App\Application\Command;
 use DateTimeImmutable;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CreateAlbum
+readonly class CreateAlbum
 {
     public function __construct(
         #[Assert\NotBlank(message: 'ID cannot be empty')]
         #[Assert\Uuid(message: 'Invalid UUID format')]
-        public readonly string $id,
+        public string $id,
 
         #[Assert\NotBlank(message: 'Title cannot be empty')]
         #[Assert\Length(
@@ -19,7 +19,7 @@ class CreateAlbum
             minMessage: 'Title must be at least {{ limit }} characters long',
             maxMessage: 'Title cannot be longer than {{ limit }} characters'
         )]
-        public readonly string $title,
+        public string $title,
 
         #[Assert\NotBlank(message: 'Artist cannot be empty')]
         #[Assert\Length(
@@ -28,17 +28,17 @@ class CreateAlbum
             minMessage: 'Artist must be at least {{ limit }} characters long',
             maxMessage: 'Artist cannot be longer than {{ limit }} characters'
         )]
-        public readonly string $artist,
+        public string $artist,
 
         #[Assert\NotNull(message: 'Release date is required')]
         #[Assert\Type(DateTimeImmutable::class)]
-        public readonly DateTimeImmutable $releaseDate,
+        public DateTimeImmutable $releaseDate,
 
         #[Assert\Length(
             max: 1000,
             maxMessage: 'Description cannot be longer than {{ limit }} characters'
         )]
-        public readonly ?string $description = null,
+        public ?string $description = null,
     ) {
     }
 }

@@ -4,16 +4,16 @@ namespace App\Application\Query\DTO;
 
 use JsonSerializable;
 
-class PaginatedResult implements JsonSerializable
+readonly class PaginatedResult implements JsonSerializable
 {
     /**
      * @param array<Album> $items
      */
     public function __construct(
-        public readonly array $items,
-        public readonly int $total,
-        public readonly int $page,
-        public readonly int $itemsPerPage
+        public array $items,
+        public int $total,
+        public int $page,
+        public int $itemsPerPage
     ) {
     }
 

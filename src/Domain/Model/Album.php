@@ -7,11 +7,14 @@ use Ramsey\Uuid\UuidInterface;
 
 class Album
 {
+    /**
+     * @throws InvalidAlbumException
+     */
     private function __construct(
-        private UuidInterface $id,
-        private string $title,
-        private string $artist,
-        private DateTimeImmutable $releaseDate,
+        private readonly UuidInterface $id,
+        private readonly string $title,
+        private readonly string $artist,
+        private readonly DateTimeImmutable $releaseDate,
         private ?string $description = null,
     ) {
         if (strlen($this->title) < 1) {
@@ -22,6 +25,9 @@ class Album
         }
     }
 
+    /**
+     * @throws InvalidAlbumException
+     */
     public static function create(
         UuidInterface $id,
         string $title,

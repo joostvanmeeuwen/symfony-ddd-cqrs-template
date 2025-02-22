@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     description: 'DTO for creating a new album',
     required: ['title', 'artist', 'releaseDate']
 )]
-class CreateAlbumRequest
+readonly class CreateAlbumRequest
 {
     public function __construct(
         #[OA\Property(
@@ -25,7 +25,7 @@ class CreateAlbumRequest
             minMessage: 'Title must be at least {{ limit }} character long',
             maxMessage: 'Title cannot be longer than {{ limit }} characters'
         )]
-        public readonly string $title,
+        public string $title,
 
         #[OA\Property(
             description: 'The artist of the album',
@@ -38,7 +38,7 @@ class CreateAlbumRequest
             minMessage: 'Artist must be at least {{ limit }} character long',
             maxMessage: 'Artist cannot be longer than {{ limit }} characters'
         )]
-        public readonly string $artist,
+        public string $artist,
 
         #[OA\Property(
             description: 'The release date of the album',
@@ -48,7 +48,7 @@ class CreateAlbumRequest
         #[Assert\NotBlank(message: 'Release date is required')]
         #[Assert\Date(message: 'Invalid date format. Use YYYY-MM-DD')]
         #[SerializedName('releaseDate')]
-        public readonly string $releaseDate,
+        public string $releaseDate,
 
         #[OA\Property(
             description: 'Optional description of the album',
@@ -59,7 +59,7 @@ class CreateAlbumRequest
             max: 1000,
             maxMessage: 'Description cannot be longer than {{ limit }} characters'
         )]
-        public readonly ?string $description = null,
+        public ?string $description = null,
     ) {
     }
 }

@@ -5,14 +5,14 @@ namespace App\Application\Query\DTO;
 use DateTimeImmutable;
 use JsonSerializable;
 
-class Album implements JsonSerializable
+readonly class Album implements JsonSerializable
 {
     public function __construct(
-        public readonly string $id,
-        public readonly string $title,
-        public readonly string $artist,
-        public readonly DateTimeImmutable $releaseDate,
-        public readonly ?string $description
+        public string $id,
+        public string $title,
+        public string $artist,
+        public DateTimeImmutable $releaseDate,
+        public ?string $description
     ) {
     }
 

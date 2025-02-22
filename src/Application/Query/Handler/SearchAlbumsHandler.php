@@ -8,10 +8,10 @@ use App\Domain\Repository\AlbumRepositoryInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 #[AsMessageHandler]
-class SearchAlbumsHandler
+readonly class SearchAlbumsHandler
 {
     public function __construct(
-        private readonly AlbumRepositoryInterface $repository
+        private AlbumRepositoryInterface $repository
     ) {
     }
 
